@@ -2,11 +2,19 @@
 const canvas = document.getElementById('canvas');
 const cellSize = 10;
 
+// Parse URL parameters and set to default value if not found
+const urlParams = new URLSearchParams(window.location.search);
+let piSize = parseInt(urlParams.get('size')) || 1000;
+let splitSize = parseInt(urlParams.get('split')) || 4;
+
+canvas.width = (piSize * cellSize);
+canvas.height = (piSize * cellSize);
+
 // Get context and set initial properties for drawing
 const ctx = canvas.getContext('2d');
-ctx.fillStyle = 'black';
-ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.fillStyle = 'white';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = 'black';
 
 function getPi(size) {
     let i = 1n;
@@ -20,7 +28,7 @@ function getPi(size) {
     return pi / (10n ** 20n);
 }
 // Pi digits as a string
-const pi = getPi(1000);
+const pi = getPi(piSize);
 
 function to2dArray(str, numCharacters) {
     let result = []; // initialize an empty array for the result
@@ -40,9 +48,9 @@ function to2dArray(str, numCharacters) {
 function drawPiBinary() {
     let color = "white";
     let binaryString = pi.toString(2);
-    let binaryStringArr = to2dArray(binaryString, 100);
-    for (let i = 0; i < binaryString.length; i++) {
-        for (let j = 0; j < binaryString.length; j++) {
+    let binaryStringArr = to2dArray(binaryString, splitSize);
+    for (let i = 0; i < piSize; i++) {
+        for (let j = 0; j < piSize; j++) {
             if (binaryStringArr[i][j] == '1') {
                 color = "black";
             } else {
