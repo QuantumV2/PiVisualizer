@@ -32,18 +32,14 @@ const pi = getPi(piSize);
 canvas.width = ((pi.toString(2).length / splitSize) * cellSize) + cellSize;
 
 function to2dArray(str, numCharacters) {
-    let result = []; // initialize an empty array for the result
-    let currIndex = 0; // set the current index to 0
-    while (currIndex < str.length) { // loop until current index reaches the end of the string
-        // use the slice method to get a certain number of characters starting from the current index
-        let currSlice = str.slice(currIndex, currIndex + numCharacters);
-        // push the current slice to the result array
-        result.push(currSlice);
-        // increment the current index by the specified number of characters
-        currIndex += numCharacters;
+    let result = [];
+    for (let i = 0; i < str.length; i += numCharacters) { 
+        let chunk = str.substring(i, i + numCharacters).split(''); 
+        result.push(chunk);
     }
     return result;
 }
+
 
 // Function to convert pi digits to binary and draw pixels on canvas
 function drawPiBinary() {
