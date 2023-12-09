@@ -65,7 +65,7 @@ function drawPiBinary() {
 function download() {
     const link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
-    link.download = ".png";
+    link.download = "pi.png";
     link.click();
 }
 
