@@ -8,7 +8,7 @@ let piSize = parseInt(urlParams.get('size')) || 1000;
 let splitSize = parseInt(urlParams.get('split')) || 4;
 
 //canvas.width = ((piSize) * cellSize) ;
-canvas.height = (splitSize * cellSize);
+canvas.width = (splitSize * cellSize);
 
 // Get context and set initial properties for drawing
 const ctx = canvas.getContext('2d');
@@ -29,7 +29,7 @@ function getPi(size) {
 }
 // Pi digits as a string
 const pi = getPi(piSize);
-canvas.width = ((pi.toString(2).length / splitSize) * cellSize) + cellSize;
+canvas.height = ((pi.toString(2).length / splitSize) * cellSize) + cellSize;
 
 function to2dArray(str, numCharacters) {
     let result = [];
@@ -54,7 +54,7 @@ function drawPiBinary() {
                 color = "white";
             }
             ctx.fillStyle = color;
-            ctx.fillRect(i * cellSize, j * cellSize, cellSize, cellSize);
+            ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
         }
     }
 }
