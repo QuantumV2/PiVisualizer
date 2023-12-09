@@ -29,7 +29,7 @@ function getPi(size) {
 }
 // Pi digits as a string
 const pi = getPi(piSize);
-canvas.width = ((pi.toString(2).length / splitSize) * cellSize);
+canvas.width = ((pi.toString(2).length / splitSize) * cellSize) + cellSize;
 
 function to2dArray(str, numCharacters) {
     let result = []; // initialize an empty array for the result
