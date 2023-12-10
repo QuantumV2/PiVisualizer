@@ -18,17 +18,17 @@ ctx.fillStyle = 'black';
 
 function getPi(size) {
     let i = 1n;
-    let x = 3n * (10n ** (BigInt(size) + 20n));
+    let x = 3n * (10n ** (BigInt(size + 1) + 20n));
     let pi = x;
     while (x > 0) {
         x = x * i / ((i + 1n) * 4n);
         pi += x / (i + 2n);
         i += 2n;
     }
-    return pi / (10n ** 20n);
+    return BigInt((pi / (10n ** 20n)).toString().slice(1));
 }
 // Pi digits as a string
-const pi = getPi(piSize);
+let pi = getPi(piSize);
 canvas.height = ((pi.toString(2).length / splitSize) * cellSize) + cellSize;
 
 function to2dArray(str, numCharacters) {
@@ -39,7 +39,6 @@ function to2dArray(str, numCharacters) {
     }
     return result;
 }
-
 
 // Function to convert pi digits to binary and draw pixels on canvas
 function drawPiBinary() {
